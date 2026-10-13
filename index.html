@@ -13,15 +13,30 @@
 
 
 <button onclick="m()" style="padding:10px; margin-top:10px;">အသံပိတ်ရန် (Mute)</button>
-<script>
+
+
+
+<h3>အသံဖိုင် (Voiceover) တင်ရန်</h3>
+<input type="file" id="a">
+
+
+
+<audio id="ap" controls style="display:none;"></audio>
+​<script>
 let u = document.getElementById('v');
 let d = document.getElementById('p');
 u.onchange = function(e) {
 d.src = URL.createObjectURL(e.target.files[0]);
 d.style.display = 'block';
 }
-function m() {
+​function m() {
 d.muted = !d.muted;
+}
+​let au = document.getElementById('a');
+let ap = document.getElementById('ap');
+au.onchange = function(e) {
+ap.src = URL.createObjectURL(e.target.files[0]);
+ap.style.display = 'block';
 }
 </script>
 </body>
