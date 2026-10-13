@@ -11,7 +11,7 @@
 
 
 
-<video id="p" controls preload="auto" playsinline style="width:100%; max-height:400px; background:#000;"></video>
+<video id="p" controls playsinline style="width:100%; max-height:400px; background:#000;"></video>
 
 
 <button onclick="m()" style="padding:10px; margin-top:10px;">အသံပိတ်ရန် (Mute)</button>
@@ -23,17 +23,22 @@
 
 
 
-<audio id="ap" controls preload="auto" style="width:100%;"></audio>
+<audio id="ap" controls style="width:100%;"></audio>
 ​<script>
 let u = document.getElementById('v');
 let d = document.getElementById('p');
 u.onchange = function(e) {
 let file = e.target.files[0];
 if (file) {
-d.src = URL.createObjectURL(file);
+d.removeAttribute('src');
+let blobURL = URL.createObjectURL(file);
+d.src = blobURL;
 d.load();
 }
 }
+​d.onerror = function() {
+alert("ဒီဗီဒီယိုဖိုင်ဖော်မတ်ကို ဖုန်းဘရောက်ဇာက တိုက်ရိုက်မဖွင့်နိုင်ပါ။ ဗီဒီယိုဖိုင်ကို MP4 (H.264) ပုံစံပြောင်းပြီး ထပ်စမ်းကြည့်ပါ။");
+};
 ​function m() {
 d.muted = !d.muted;
 }
