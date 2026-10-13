@@ -28,6 +28,7 @@ let d = document.getElementById('p');
 u.onchange = function(e) {
 d.src = URL.createObjectURL(e.target.files[0]);
 d.style.display = 'block';
+d.load();
 }
 ​function m() {
 d.muted = !d.muted;
@@ -37,6 +38,7 @@ let ap = document.getElementById('ap');
 au.onchange = function(e) {
 ap.src = URL.createObjectURL(e.target.files[0]);
 ap.style.display = 'block';
+ap.load();
 }
 </script>
 </body>
