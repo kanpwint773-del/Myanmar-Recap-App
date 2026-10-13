@@ -2,10 +2,11 @@
 <html>
 <head>
 <title>Movie Recap</title>
+<meta charset="UTF-8">
 </head>
 <body>
 <h2>ဗီဒီယို တင်ရန်</h2>
-<input type="file" id="v">
+<input type="file" id="v" accept="video/*">
 
 
 
@@ -17,18 +18,20 @@
 
 
 <h3>အသံဖိုင် (Voiceover) တင်ရန်</h3>
-<input type="file" id="a">
+<input type="file" id="a" accept="audio/*">
 
 
 
-<audio id="ap" controls style="display:none;"></audio>
+<audio id="ap" controls style="display:none; width:100%;"></audio>
 ​<script>
 let u = document.getElementById('v');
 let d = document.getElementById('p');
 u.onchange = function(e) {
+if (e.target.files.length > 0) {
 d.src = URL.createObjectURL(e.target.files[0]);
 d.style.display = 'block';
 d.load();
+}
 }
 ​function m() {
 d.muted = !d.muted;
@@ -36,9 +39,11 @@ d.muted = !d.muted;
 ​let au = document.getElementById('a');
 let ap = document.getElementById('ap');
 au.onchange = function(e) {
+if (e.target.files.length > 0) {
 ap.src = URL.createObjectURL(e.target.files[0]);
 ap.style.display = 'block';
 ap.load();
+}
 }
 </script>
 </body>
