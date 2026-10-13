@@ -30,7 +30,7 @@ u.onchange = function(e) {
 let file = e.target.files[0];
 if (file) {
 d.src = URL.createObjectURL(file);
-d.style.display = 'block';
+d.load();
 }
 }
 ​function m() {
@@ -42,7 +42,7 @@ au.onchange = function(e) {
 let file = e.target.files[0];
 if (file) {
 ap.src = URL.createObjectURL(file);
-ap.style.display = 'block';
+ap.load();
 }
 }
 </script>
