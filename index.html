@@ -7,11 +7,11 @@
 </head>
 <body>
 <h2>ဗီဒီယို တင်ရန်</h2>
-<input type="file" id="v" accept="video/*">
+<input type="file" id="v" accept="video/mp4,video/webm,video/ogg">
 
 
 
-<video id="p" controls playsinline style="width:100%; max-height:400px; background:#000;"></video>
+<video id="p" controls preload="metadata" playsinline style="width:100%; max-height:400px; background:#000;"></video>
 
 
 <button onclick="m()" style="padding:10px; margin-top:10px;">အသံပိတ်ရန် (Mute)</button>
@@ -23,19 +23,19 @@
 
 
 
-<audio id="ap" controls style="width:100%;"></audio>
+<audio id="ap" controls preload="metadata" style="width:100%;"></audio>
 ​<script>
 let u = document.getElementById('v');
 let d = document.getElementById('p');
 ​u.onchange = function(e) {
 let file = e.target.files[0];
 if (file) {
-d.src = URL.createObjectURL(file);
+if (d.src) {
+URL.revokeObjectURL(d.src);
+}
+let blobURL = URL.createObjectURL(file);
+d.src = blobURL;
 d.load();
-// ဖုန်းဘရောက်ဇာတွေ ဗီဒီယိုအချက်အလက် မြင်အောင် အတင်းအကျပ် တွန်းပို့ပေးခြင်း
-d.oncanplay = function() {
-d.pause();
-};
 }
 }
 ​function m() {
@@ -43,10 +43,14 @@ d.muted = !d.muted;
 }
 ​let au = document.getElementById('a');
 let ap = document.getElementById('ap');
-au.onchange = function(e) {
+​au.onchange = function(e) {
 let file = e.target.files[0];
 if (file) {
-ap.src = URL.createObjectURL(file);
+if (ap.src) {
+URL.revokeObjectURL(ap.src);
+}
+let blobURL = URL.createObjectURL(file);
+ap.src = blobURL;
 ap.load();
 }
 }
