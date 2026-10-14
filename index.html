@@ -7,11 +7,11 @@
 </head>
 <body>
 <h2>ဗီဒီယို တင်ရန်</h2>
-<input type="file" id="v" accept="video/mp4,video/webm,video/ogg">
+<input type="file" id="v" accept="video/*">
 
 
 
-<video id="p" controls preload="metadata" playsinline style="width:100%; max-height:400px; background:#000;"></video>
+<video id="p" controls style="width:100%; display:none;"></video>
 
 
 <button onclick="m()" style="padding:10px; margin-top:10px;">အသံပိတ်ရန် (Mute)</button>
@@ -20,40 +20,3 @@
 
 <h3>အသံဖိုင် (Voiceover) တင်ရန်</h3>
 <input type="file" id="a" accept="audio/*">
-
-
-
-<audio id="ap" controls preload="metadata" style="width:100%;"></audio>
-​<script>
-let u = document.getElementById('v');
-let d = document.getElementById('p');
-​u.onchange = function(e) {
-let file = e.target.files[0];
-if (file) {
-if (d.src) {
-URL.revokeObjectURL(d.src);
-}
-let blobURL = URL.createObjectURL(file);
-d.src = blobURL;
-d.load();
-}
-}
-​function m() {
-d.muted = !d.muted;
-}
-​let au = document.getElementById('a');
-let ap = document.getElementById('ap');
-​au.onchange = function(e) {
-let file = e.target.files[0];
-if (file) {
-if (ap.src) {
-URL.revokeObjectURL(ap.src);
-}
-let blobURL = URL.createObjectURL(file);
-ap.src = blobURL;
-ap.load();
-}
-}
-</script>
-</body>
-</html>
