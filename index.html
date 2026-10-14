@@ -2,16 +2,14 @@
 <html>
 <head>
 <title>Movie Recap</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 <h2>ဗီဒီယို တင်ရန်</h2>
-<input type="file" id="v" accept="video/*">
+<input type="file" id="v">
 
 
 
-<video id="p" controls playsinline style="width:100%; max-height:400px; display:none; background:#000;"></video>
+<video id="p" controls style="width:100%; display:none;"></video>
 
 
 <button onclick="m()" style="padding:10px; margin-top:10px;">အသံပိတ်ရန် (Mute)</button>
@@ -19,38 +17,28 @@
 
 
 <h3>အသံဖိုင် (Voiceover) တင်ရန်</h3>
-<input type="file" id="a" accept="audio/*">
+<input type="file" id="a">
 
 
 
-<audio id="ap" controls style="display:none; width:100%;"></audio>
+<audio id="ap" controls style="display:none;"></audio>
 ​<script>
 let u = document.getElementById('v');
 let d = document.getElementById('p');
-​u.onchange = function(e) {
-let file = e.target.files[0];
-if (file) {
-console.log("File selected:", file.name);
-d.src = URL.createObjectURL(file);
+u.onchange = function(e) {
+d.src = URL.createObjectURL(e.target.files[0]);
 d.style.display = 'block';
 d.load();
 }
-}
-​d.onerror = function() {
-alert("ဗီဒီယို Error တက်နေ습니다. Error code: " + (d.error ? d.error.code : "unknown"));
-};
 ​function m() {
 d.muted = !d.muted;
 }
 ​let au = document.getElementById('a');
 let ap = document.getElementById('ap');
-​au.onchange = function(e) {
-let file = e.target.files[0];
-if (file) {
-ap.src = URL.createObjectURL(file);
+au.onchange = function(e) {
+ap.src = URL.createObjectURL(e.target.files[0]);
 ap.style.display = 'block';
 ap.load();
-}
 }
 </script>
 </body>
