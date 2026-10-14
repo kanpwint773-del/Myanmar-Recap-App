@@ -30,22 +30,14 @@ let d = document.getElementById('p');
 ​u.onchange = function(e) {
 let file = e.target.files[0];
 if (file) {
+console.log("File selected:", file.name);
 d.src = URL.createObjectURL(file);
 d.style.display = 'block';
 d.load();
 }
 }
-​// ဗီဒီယို ဘာကြောင့်မပွင့်တာလဲဆိုတာ ဘရောက်ဇာကို တိုက်ရိုက်မေးပြီး ဖမ်းပြခိုင်းခြင်း
-d.onerror = function() {
-let err = d.error;
-let errCode = err ? err.code : "unknown";
-let errMessage = err ? err.message : "No additional info";
-​let reason = "မသိရသေးသော အမှား";
-if (errCode === 1) reason = "ဖိုင်တင်ခြင်းကို အသုံးပြုသူက ဖျက်လိုက်သည် (MEDIA_ERR_ABORTED)";
-else if (errCode === 2) reason = "ကွန်ရက် သို့မဟုတ် ဒေတာ ပို့လွှတ်မှု အမှားအယွင်းရှိသည် (MEDIA_ERR_NETWORK)";
-else if (errCode === 3) reason = "ဗီဒီယိုဖိုင် ပျက်စီးနေသည် သို့မဟုတ် ဖုန်းဘရောက်ဇာက မထောက်ပံ့သော ဖော်မတ်ဖြစ်နေသည် (MEDIA_ERR_DECODE)";
-else if (errCode === 4) reason = "ဖုန်းဘရောက်ဇာက ဤဗီဒီယိုဖိုင်အမျိုးအစားကို လုံးဝ လက်မခံပါ (MEDIA_ERR_SRC_NOT_SUPPORTED)";
-​alert("ဗီဒီယိုဖွင့်၍မရပါ!\nအကြောင်းရင်း: " + reason + "\n(Error Code: " + errCode + ")");
+​d.onerror = function() {
+alert("ဗီဒီယို Error တက်နေ습니다. Error code: " + (d.error ? d.error.code : "unknown"));
 };
 ​function m() {
 d.muted = !d.muted;
@@ -60,9 +52,6 @@ ap.style.display = 'block';
 ap.load();
 }
 }
-​ap.onerror = function() {
-alert("အသံဖိုင်ဖွင့်၍မရပါ။ အသံဖိုင်အမျိုးအစားကို စစ်ဆေးပါ။");
-};
 </script>
 </body>
 </html>
