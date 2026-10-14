@@ -1,54 +1,55 @@
-​<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
-<title>Movie Recap Editor</title>
+<title>Movie Recap</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-​<h2>ဗီဒီယို တင်ရန်</h2>
-<input type="file" id="videoInput" accept="video/*">
+<h2>ဗီဒီယို တင်ရန်</h2>
+<input type="file" id="v" accept="video/*">
 
 
 
-<video id="videoPlayer" controls style="width:100%; max-height:400px; display:none; background:#000;"></video>
+<video id="p" controls playsinline style="width:100%; max-height:400px; background:#000;"></video>
 
 
-<button onclick="toggleMute()" style="padding:10px; margin-top:10px;">အသံပိတ်ရန် (Mute)</button>
-​
-
-<hr>
-
-​<h2>အသံဖိုင် (Voiceover) တင်ရန်</h2>
-<input type="file" id="audioInput" accept="audio/*">
+<button onclick="m()" style="padding:10px; margin-top:10px;">အသံပိတ်ရန် (Mute)</button>
 
 
 
-<audio id="audioPlayer" controls style="display:none; width:100%;"></audio>
+<h3>အသံဖိုင် (Voiceover) တင်ရန်</h3>
+<input type="file" id="a" accept="audio/*">
+
+
+
+<audio id="ap" controls style="width:100%;"></audio>
 ​<script>
-let videoInput = document.getElementById('videoInput');
-let videoPlayer = document.getElementById('videoPlayer');
-​videoInput.onchange = function(e) {
+let u = document.getElementById('v');
+let d = document.getElementById('p');
+​u.onchange = function(e) {
 let file = e.target.files[0];
 if (file) {
-videoPlayer.src = URL.createObjectURL(file);
-videoPlayer.style.display = 'block';
-videoPlayer.load();
-}
+d.src = URL.createObjectURL(file);
+d.load();
+// ဖုန်းဘရောက်ဇာတွေ ဗီဒီယိုအချက်အလက် မြင်အောင် အတင်းအကျပ် တွန်းပို့ပေးခြင်း
+d.oncanplay = function() {
+d.pause();
 };
-​function toggleMute() {
-videoPlayer.muted = !videoPlayer.muted;
 }
-​let audioInput = document.getElementById('audioInput');
-let audioPlayer = document.getElementById('audioPlayer');
-​audioInput.onchange = function(e) {
+}
+​function m() {
+d.muted = !d.muted;
+}
+​let au = document.getElementById('a');
+let ap = document.getElementById('ap');
+au.onchange = function(e) {
 let file = e.target.files[0];
 if (file) {
-audioPlayer.src = URL.createObjectURL(file);
-audioPlayer.style.display = 'block';
-audioPlayer.load();
+ap.src = URL.createObjectURL(file);
+ap.load();
 }
-};
+}
 </script>
-​</body>
+</body>
 </html>
